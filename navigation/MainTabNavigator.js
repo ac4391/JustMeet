@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import MapScreen from '../screens/MapScreen';
+import ApplicantsScreen from '../screens/ApplicantsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -70,9 +71,26 @@ MapStack.navigationOptions = {
   ),
 };
 
+const ApplicantsStack = createStackNavigator({
+  Applicants: ApplicantsScreen,
+});
+
+ApplicantsStack.navigationOptions = {
+  tabBarLabel: 'Applicants',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios' ? 'ios-person' : 'md-person'
+      }
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
   MapScreen,
+  ApplicantsScreen,
 });
