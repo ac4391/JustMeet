@@ -6,6 +6,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import MapScreen from '../screens/MapScreen';
+import ApplicantsScreen from '../screens/ApplicantsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -53,8 +55,42 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const MapStack = createStackNavigator({
+  Maps: MapScreen,
+});
+
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios' ? 'ios-globe' : 'md-globe'
+      }
+    />
+  ),
+};
+
+const ApplicantsStack = createStackNavigator({
+  Applicants: ApplicantsScreen,
+});
+
+ApplicantsStack.navigationOptions = {
+  tabBarLabel: 'Applicants',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios' ? 'ios-person' : 'md-person'
+      }
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  MapScreen,
+  ApplicantsScreen,
 });

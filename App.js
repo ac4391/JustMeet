@@ -47,7 +47,6 @@ class App extends React.Component {
                           }
                         }
         try {
-          console.log(API.graphql(graphqlOperation(getApplicant, {input:{email:applicant.input.email}})))
           await API.graphql(graphqlOperation(createApplicant, applicant))
         } catch (err) {
           console.log('error creating applicant', err)
