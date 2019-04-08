@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "justmeetapp-20190406163309-authRole",
+            "UnauthRoleArn": "arn:aws:iam::726866085064:role/justmeetapp-20190406163309-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::726866085064:role/justmeetapp-20190406163309-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "justmeetapp-20190406163309-deployment",
+            "UnauthRoleName": "justmeetapp-20190406163309-unauthRole",
+            "StackName": "justmeetapp-20190406163309",
+            "StackId": "arn:aws:cloudformation:us-west-2:726866085064:stack/justmeetapp-20190406163309/32d0d6f0-58ab-11e9-a635-02f7a30bb7a6"
+        },
+        "categories": {
+            "auth": {
+                "cognito3e60dbd4": {}
+            }
+        }
+    }
+}

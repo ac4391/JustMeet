@@ -1,0 +1,52 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "justmeetapp-20190406163309-authRole",
+			"UnauthRoleArn": "arn:aws:iam::726866085064:role/justmeetapp-20190406163309-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::726866085064:role/justmeetapp-20190406163309-authRole",
+			"Region": "us-west-2",
+			"DeploymentBucketName": "justmeetapp-20190406163309-deployment",
+			"UnauthRoleName": "justmeetapp-20190406163309-unauthRole",
+			"StackName": "justmeetapp-20190406163309",
+			"StackId": "arn:aws:cloudformation:us-west-2:726866085064:stack/justmeetapp-20190406163309/32d0d6f0-58ab-11e9-a635-02f7a30bb7a6"
+		}
+	},
+	"auth": {
+		"cognito3e60dbd4": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/auth/cognito3e60dbd4-cloudformation-template.yml",
+				"logicalId": "authcognito3e60dbd4"
+			},
+			"lastPushTimeStamp": "2019-04-06T23:36:48.015Z",
+			"output": {
+				"AppClientSecret": "12s5sd9k0vkrtm0eej632j8ku4rgk65avq0up88n0c63b0cjbr2a",
+				"UserPoolId": "us-west-2_wsvB83Iql",
+				"AppClientIDWeb": "5lfbvff27qliorgv6o0kp5c56v",
+				"AppClientID": "27i3k6pmlparhn5f47ihb0n6cf",
+				"IdentityPoolId": "us-west-2:056edb9d-251a-4f27-bf1b-a49f75269766",
+				"IdentityPoolName": "cognito3e60dbd4_identitypool_3e60dbd4__dev",
+				"UserPoolName": "cognito3e60dbd4_userpool_3e60dbd4"
+			},
+			"lastPushDirHash": "Tdpz+JJgeXQwgJi6OocrbBMvsyI="
+		}
+	},
+	"api": {
+		"justmeetapi": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS",
+				"GraphQLAPIIdOutput": "xqayhxiagfesjp5m233gdckqx4",
+				"GraphQLAPIEndpointOutput": "https://22iml3hayjftvdnzmkuskxhi2i.appsync-api.us-west-2.amazonaws.com/graphql"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apijustmeetapi"
+			},
+			"lastPushTimeStamp": "2019-04-06T23:36:49.716Z",
+			"lastPushDirHash": "OqTcu2jDn3VVrmIhbE2jHA84OpU="
+		}
+	}
+}
