@@ -1,0 +1,12 @@
+type Applicant @model {
+  email: String!
+  username: String!
+  locations: [Location] @connection(name: "LocationUpdates")
+}
+
+type Location @model {
+  Applicant: Applicant @connection(name: "LocationUpdates")
+  timestamp: Int!
+  latitude: Float!
+  longitude: Float!
+}

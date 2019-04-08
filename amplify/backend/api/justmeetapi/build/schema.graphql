@@ -1,0 +1,156 @@
+type Applicant {
+  email: String!
+  username: String!
+  locations(filter: ModelLocationFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelLocationConnection
+}
+
+type Location {
+  Applicant: Applicant
+  timestamp: Int!
+  latitude: Float!
+  longitude: Float!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelApplicantConnection {
+  items: [Applicant]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelApplicantFilterInput {
+  email: ModelStringFilterInput
+  username: ModelStringFilterInput
+  and: [ModelApplicantFilterInput]
+  or: [ModelApplicantFilterInput]
+  not: ModelApplicantFilterInput
+}
+
+type Query {
+  getApplicant(id: ID!): Applicant
+  listApplicants(filter: ModelApplicantFilterInput, limit: Int, nextToken: String): ModelApplicantConnection
+  getLocation(id: ID!): Location
+  listLocations(filter: ModelLocationFilterInput, limit: Int, nextToken: String): ModelLocationConnection
+}
+
+input CreateApplicantInput {
+  email: String!
+  username: String!
+}
+
+input UpdateApplicantInput {
+  email: String
+  username: String
+}
+
+input DeleteApplicantInput {
+  id: ID
+}
+
+type Mutation {
+  createApplicant(input: CreateApplicantInput!): Applicant
+  updateApplicant(input: UpdateApplicantInput!): Applicant
+  deleteApplicant(input: DeleteApplicantInput!): Applicant
+  createLocation(input: CreateLocationInput!): Location
+  updateLocation(input: UpdateLocationInput!): Location
+  deleteLocation(input: DeleteLocationInput!): Location
+}
+
+type Subscription {
+  onCreateApplicant: Applicant @aws_subscribe(mutations: ["createApplicant"])
+  onUpdateApplicant: Applicant @aws_subscribe(mutations: ["updateApplicant"])
+  onDeleteApplicant: Applicant @aws_subscribe(mutations: ["deleteApplicant"])
+  onCreateLocation: Location @aws_subscribe(mutations: ["createLocation"])
+  onUpdateLocation: Location @aws_subscribe(mutations: ["updateLocation"])
+  onDeleteLocation: Location @aws_subscribe(mutations: ["deleteLocation"])
+}
+
+type ModelLocationConnection {
+  items: [Location]
+  nextToken: String
+}
+
+input ModelLocationFilterInput {
+  timestamp: ModelIntFilterInput
+  latitude: ModelFloatFilterInput
+  longitude: ModelFloatFilterInput
+  and: [ModelLocationFilterInput]
+  or: [ModelLocationFilterInput]
+  not: ModelLocationFilterInput
+}
+
+input CreateLocationInput {
+  timestamp: Int!
+  latitude: Float!
+  longitude: Float!
+  locationApplicantId: ID
+}
+
+input UpdateLocationInput {
+  timestamp: Int
+  latitude: Float
+  longitude: Float
+  locationApplicantId: ID
+}
+
+input DeleteLocationInput {
+  id: ID
+}

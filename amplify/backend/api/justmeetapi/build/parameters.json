@@ -1,0 +1,12 @@
+{
+    "AppSyncApiName": "justmeetapi",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito3e60dbd4",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "justmeetapp-20190406163309-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/86e5a81211d2eed9d7e01dd571f5a55edadaa4df"
+}
