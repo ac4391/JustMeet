@@ -27,6 +27,24 @@ HomeStack.navigationOptions = {
   ),
 };
 
+const ApplicantsStack = createStackNavigator({
+  Home1: ApplicantsScreen,
+});
+
+ApplicantsStack.navigationOptions = {
+  tabBarLabel: 'Applicants',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-person`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 });
@@ -64,33 +82,13 @@ MapStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios' ? 'ios-globe' : 'md-globe'
-      }
+      name={Platform.OS === 'ios' ? 'ios-globe' : 'md-globe'}
     />
   ),
 };
 
-const ApplicantsStack = createStackNavigator({
-  Applicants: ApplicantsScreen,
-});
-
-ApplicantsStack.navigationOptions = {
-  tabBarLabel: 'Applicants',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios' ? 'ios-person' : 'md-person'
-      }
-    />
-  ),
-};
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-  MapScreen,
-  ApplicantsScreen,
+  ApplicantsStack,
+  MapStack,
 });
