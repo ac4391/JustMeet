@@ -3,13 +3,13 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
-import { withAuthenticator } from 'aws-amplify-react-native'; 
+import { withAuthenticator } from 'aws-amplify-react-native';
 import { createApplicant } from './src/graphql/mutations';
 import Amplify, { Auth, API, graphqlOperation } from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { getApplicant } from './src/graphql/queries';
+import { listApplicants } from './src/graphql/queries';
 
-//Auth.configure(awsmobile);
 Amplify.configure(awsmobile);
 
 class App extends React.Component {
@@ -18,7 +18,7 @@ class App extends React.Component {
   };
 
   render() {
-      
+
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -39,11 +39,24 @@ class App extends React.Component {
 
   _loadResourcesAsync = async () => {
         //console.log(Auth.user); // Print user email
+        try {
+          const users = await API.graphql(graphqlOperation(listApplicants));
+          var existingUser = false;
+          for (i = 0; i < users.data.listApplicants.items.length; i++){
+            if (users.data.listApplicants.items[i].email == Auth.user.attributes.email){existingUser = true}
+          }
+        } catch (err) {
+          console.log('error getting applicant', err)
+        }
+        if (existingUser) {
+          console.log('applicant already exists')
+        }
+        else{
         console.log('Trying to create applicant');
+
         const applicant = {input:{
                           email: Auth.user.attributes.email,
                           username: Auth.user.username,
-                          //locations: [null,null,null],
                           }
                         }
         try {
@@ -51,7 +64,7 @@ class App extends React.Component {
         } catch (err) {
           console.log('error creating applicant', err)
         }
-
+      }
 
     return Promise.all([
       Asset.loadAsync([

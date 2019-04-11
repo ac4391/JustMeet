@@ -52,7 +52,7 @@ export default class ApplicantsScreen extends React.Component {
         <View style={{flex: 1}}>
           {
             this.state.applicants.map((applicant, index) => (
-              <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row'}} key={index}>
                 <Icon.Ionicons onPress={ ()=> Linking.openURL('https://www.linkedin.com/in/ariel-cohen-codar-301020141/') } name={'logo-linkedin'} size={20} color={'#4875B4'}/><Text>{applicant.username}</Text>
               </View>
             ))
