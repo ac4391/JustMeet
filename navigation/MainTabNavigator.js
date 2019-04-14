@@ -91,6 +91,6 @@ export default createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
-  MapScreen,
-  ApplicantsScreen,
+  MapStack,
+  ApplicantsStack,
 });
