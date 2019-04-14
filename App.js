@@ -7,7 +7,7 @@ import { withAuthenticator } from 'aws-amplify-react-native';
 import { createApplicant } from './src/graphql/mutations';
 import Amplify, { Auth, API, graphqlOperation } from 'aws-amplify';
 import awsmobile from './aws-exports';
-import { getApplicant } from './src/graphql/queries';
+import { getApplicant, listApplicants } from './src/graphql/queries';
 
 //Auth.configure(awsmobile);
 Amplify.configure(awsmobile);
@@ -40,13 +40,16 @@ class App extends React.Component {
   _loadResourcesAsync = async () => {
         //console.log(Auth.user); // Print user email
         console.log('Trying to create applicant');
-        const applicant = {input:{
+        const applicant = {
                           email: Auth.user.attributes.email,
                           username: Auth.user.username,
                           }
-                        }
         try {
-          await API.graphql(graphqlOperation(createApplicant, applicant))
+          const query = await API.graphql(graphqlOperation(listApplicants))
+
+          console.log(query);
+          await API.graphql(graphqlOperation(createApplicant, {input: applicant}))
+          console.log('applicant created')
         } catch (err) {
           console.log('error creating applicant', err)
         }
