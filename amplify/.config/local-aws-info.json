@@ -3,5 +3,10 @@
         "configLevel": "project",
         "useProfile": true,
         "profileName": "justmeet-amplify"
+    },
+    "justmeet": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "justmeet-amplify"
     }
 }

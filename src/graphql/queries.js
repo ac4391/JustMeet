@@ -3,16 +3,13 @@
 
 export const getApplicant = `query GetApplicant($id: ID!) {
   getApplicant(id: $id) {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
@@ -23,11 +20,13 @@ export const listApplicants = `query ListApplicants(
 ) {
   listApplicants(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
+      id
       email
       username
-      locations {
-        nextToken
-      }
+      firstName
+      lastName
+      professionalField
+      linkedin
     }
     nextToken
   }
@@ -35,16 +34,10 @@ export const listApplicants = `query ListApplicants(
 `;
 export const getLocation = `query GetLocation($id: ID!) {
   getLocation(id: $id) {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;
@@ -55,13 +48,10 @@ export const listLocations = `query ListLocations(
 ) {
   listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      Applicant {
-        email
-        username
-      }
-      timestamp
-      latitude
-      longitude
+      id
+      email
+      lat
+      lon
     }
     nextToken
   }

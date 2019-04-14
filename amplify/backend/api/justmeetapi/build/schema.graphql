@@ -1,14 +1,18 @@
 type Applicant {
+  id: ID!
   email: String!
   username: String!
-  locations(filter: ModelLocationFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelLocationConnection
+  firstName: String
+  lastName: String
+  professionalField: String
+  linkedin: String
 }
 
 type Location {
-  Applicant: Applicant
-  timestamp: Int!
-  latitude: Float!
-  longitude: Float!
+  id: ID!
+  email: String!
+  lat: Float!
+  lon: Float!
 }
 
 enum ModelSortDirection {
@@ -77,8 +81,13 @@ input ModelBooleanFilterInput {
 }
 
 input ModelApplicantFilterInput {
+  id: ModelIDFilterInput
   email: ModelStringFilterInput
   username: ModelStringFilterInput
+  firstName: ModelStringFilterInput
+  lastName: ModelStringFilterInput
+  professionalField: ModelStringFilterInput
+  linkedin: ModelStringFilterInput
   and: [ModelApplicantFilterInput]
   or: [ModelApplicantFilterInput]
   not: ModelApplicantFilterInput
@@ -92,13 +101,23 @@ type Query {
 }
 
 input CreateApplicantInput {
+  id: ID
   email: String!
   username: String!
+  firstName: String
+  lastName: String
+  professionalField: String
+  linkedin: String
 }
 
 input UpdateApplicantInput {
+  id: ID!
   email: String
   username: String
+  firstName: String
+  lastName: String
+  professionalField: String
+  linkedin: String
 }
 
 input DeleteApplicantInput {
@@ -129,26 +148,27 @@ type ModelLocationConnection {
 }
 
 input ModelLocationFilterInput {
-  timestamp: ModelIntFilterInput
-  latitude: ModelFloatFilterInput
-  longitude: ModelFloatFilterInput
+  id: ModelIDFilterInput
+  email: ModelStringFilterInput
+  lat: ModelFloatFilterInput
+  lon: ModelFloatFilterInput
   and: [ModelLocationFilterInput]
   or: [ModelLocationFilterInput]
   not: ModelLocationFilterInput
 }
 
 input CreateLocationInput {
-  timestamp: Int!
-  latitude: Float!
-  longitude: Float!
-  locationApplicantId: ID
+  id: ID
+  email: String!
+  lat: Float!
+  lon: Float!
 }
 
 input UpdateLocationInput {
-  timestamp: Int
-  latitude: Float
-  longitude: Float
-  locationApplicantId: ID
+  id: ID!
+  email: String
+  lat: Float
+  lon: Float
 }
 
 input DeleteLocationInput {

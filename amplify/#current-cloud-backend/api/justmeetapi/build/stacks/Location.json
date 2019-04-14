@@ -112,10 +112,6 @@
                     {
                         "AttributeName": "id",
                         "AttributeType": "S"
-                    },
-                    {
-                        "AttributeName": "locationApplicantId",
-                        "AttributeType": "S"
                     }
                 ],
                 "StreamSpecification": {
@@ -159,37 +155,7 @@
                             "Ref": "AWS::NoValue"
                         }
                     ]
-                },
-                "GlobalSecondaryIndexes": [
-                    {
-                        "IndexName": "gsi-LocationUpdates",
-                        "KeySchema": [
-                            {
-                                "AttributeName": "locationApplicantId",
-                                "KeyType": "HASH"
-                            }
-                        ],
-                        "Projection": {
-                            "ProjectionType": "ALL"
-                        },
-                        "ProvisionedThroughput": {
-                            "Fn::If": [
-                                "ShouldUsePayPerRequestBilling",
-                                {
-                                    "Ref": "AWS::NoValue"
-                                },
-                                {
-                                    "ReadCapacityUnits": {
-                                        "Ref": "DynamoDBModelTableReadIOPS"
-                                    },
-                                    "WriteCapacityUnits": {
-                                        "Ref": "DynamoDBModelTableWriteIOPS"
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ]
+                }
             }
         },
         "LocationIAMRole": {
@@ -715,31 +681,7 @@
             }
         }
     },
-    "Outputs": {
-        "GetAttLocationDataSourceName": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "LocationDataSource",
-                    "Name"
-                ]
-            },
-            "Export": {
-                "Name": {
-                    "Fn::Join": [
-                        ":",
-                        [
-                            {
-                                "Ref": "AppSyncApiId"
-                            },
-                            "GetAtt",
-                            "LocationDataSource",
-                            "Name"
-                        ]
-                    ]
-                }
-            }
-        }
-    },
+    "Outputs": {},
     "Conditions": {
         "ShouldUsePayPerRequestBilling": {
             "Fn::Equals": [
