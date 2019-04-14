@@ -15,5 +15,22 @@
                 "cognito3e60dbd4": {}
             }
         }
+    },
+    "justmeet": {
+        "awscloudformation": {
+            "AuthRoleName": "justmeetapp-20190411105240-authRole",
+            "UnauthRoleArn": "arn:aws:iam::726866085064:role/justmeetapp-20190411105240-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::726866085064:role/justmeetapp-20190411105240-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "justmeetapp-20190411105240-deployment",
+            "UnauthRoleName": "justmeetapp-20190411105240-unauthRole",
+            "StackName": "justmeetapp-20190411105240",
+            "StackId": "arn:aws:cloudformation:us-west-2:726866085064:stack/justmeetapp-20190411105240/74f426b0-5c69-11e9-9e7d-0a9edf17d014"
+        },
+        "categories": {
+            "auth": {
+                "cognito3e60dbd4": {}
+            }
+        }
     }
 }

@@ -1,12 +1,16 @@
 type Applicant @model {
+  id: ID!
   email: String!
   username: String!
-  locations: [Location] @connection(name: "LocationUpdates")
+  firstName: String
+  lastName: String
+  professionalField: String
+  linkedin: String
 }
 
 type Location @model {
-  Applicant: Applicant @connection(name: "LocationUpdates")
-  timestamp: Int!
-  latitude: Float!
-  longitude: Float!
+  id: ID!
+  email: String!
+  lat: Float!
+  lon: Float!
 }

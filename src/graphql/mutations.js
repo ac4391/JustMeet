@@ -3,91 +3,64 @@
 
 export const createApplicant = `mutation CreateApplicant($input: CreateApplicantInput!) {
   createApplicant(input: $input) {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
 export const updateApplicant = `mutation UpdateApplicant($input: UpdateApplicantInput!) {
   updateApplicant(input: $input) {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
 export const deleteApplicant = `mutation DeleteApplicant($input: DeleteApplicantInput!) {
   deleteApplicant(input: $input) {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
 export const createLocation = `mutation CreateLocation($input: CreateLocationInput!) {
   createLocation(input: $input) {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;
 export const updateLocation = `mutation UpdateLocation($input: UpdateLocationInput!) {
   updateLocation(input: $input) {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;
 export const deleteLocation = `mutation DeleteLocation($input: DeleteLocationInput!) {
   deleteLocation(input: $input) {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;

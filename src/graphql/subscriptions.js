@@ -3,91 +3,64 @@
 
 export const onCreateApplicant = `subscription OnCreateApplicant {
   onCreateApplicant {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
 export const onUpdateApplicant = `subscription OnUpdateApplicant {
   onUpdateApplicant {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
 export const onDeleteApplicant = `subscription OnDeleteApplicant {
   onDeleteApplicant {
+    id
     email
     username
-    locations {
-      items {
-        timestamp
-        latitude
-        longitude
-      }
-      nextToken
-    }
+    firstName
+    lastName
+    professionalField
+    linkedin
   }
 }
 `;
 export const onCreateLocation = `subscription OnCreateLocation {
   onCreateLocation {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;
 export const onUpdateLocation = `subscription OnUpdateLocation {
   onUpdateLocation {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;
 export const onDeleteLocation = `subscription OnDeleteLocation {
   onDeleteLocation {
-    Applicant {
-      email
-      username
-      locations {
-        nextToken
-      }
-    }
-    timestamp
-    latitude
-    longitude
+    id
+    email
+    lat
+    lon
   }
 }
 `;

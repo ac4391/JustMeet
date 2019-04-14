@@ -681,31 +681,7 @@
             }
         }
     },
-    "Outputs": {
-        "GetAttApplicantDataSourceName": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "ApplicantDataSource",
-                    "Name"
-                ]
-            },
-            "Export": {
-                "Name": {
-                    "Fn::Join": [
-                        ":",
-                        [
-                            {
-                                "Ref": "AppSyncApiId"
-                            },
-                            "GetAtt",
-                            "ApplicantDataSource",
-                            "Name"
-                        ]
-                    ]
-                }
-            }
-        }
-    },
+    "Outputs": {},
     "Conditions": {
         "ShouldUsePayPerRequestBilling": {
             "Fn::Equals": [

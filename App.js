@@ -43,7 +43,6 @@ class App extends React.Component {
         const applicant = {input:{
                           email: Auth.user.attributes.email,
                           username: Auth.user.username,
-                          //locations: [null,null,null],
                           }
                         }
         try {
