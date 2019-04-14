@@ -53,11 +53,11 @@ class App extends React.Component {
         }
         else{
         console.log('Trying to create applicant');
-          
+
         const applicant = {input:{
                           email: Auth.user.attributes.email,
                           username: Auth.user.username,
-                          }
+                        }}
         try {
           const query = await API.graphql(graphqlOperation(listApplicants))
 
