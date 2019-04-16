@@ -3,7 +3,7 @@ import { ActivityIndicator, Text, View, ScrollView, StyleSheet } from 'react-nat
 import { API, graphqlOperation } from 'aws-amplify';
 import { listApplicants } from '../../JustMeet/src/graphql/queries';
 import UserBox from '../../JustMeet/components/UserBox';
-
+import { Auth } from 'aws-amplify';
 import images from '../../JustMeet/assets/images/index'
 
 export default class ApplicantsScreen extends React.Component {
@@ -17,7 +17,7 @@ export default class ApplicantsScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.listApplicants()
+    this._listApplicants()
     this.state.isLoading = false
   }
 
@@ -58,17 +58,30 @@ export default class ApplicantsScreen extends React.Component {
           distance: "412km"
         }
       ]
-      this.setState({ applicants: users })
+      this.setState({ applicants: users }) }
+      catch (err) {
+        console.log('error: ', err)
+      }
+    }
 
-      /*
-      const graphqldata = await API.graphql(graphqlOperation(listApplicants))
-      this.setState({ applicants: graphqldata.data.listApplicants.items }) // reset the input field to empty after post creation
-      */
-    }
-    catch (err) {
-      console.log('error: ', err)
-    }
-  }
+      _listApplicants = async () => {
+        try {
+          const graphqldata = await API.graphql(
+            graphqlOperation(listApplicants)
+          )
+          this.setState(
+            {
+              applicants: graphqldata.data.listApplicants.items,
+              // reset the input field to empty after post creation
+            }
+          )
+        }
+        catch (err) {
+          console.log('error: ', err)
+        }
+      }
+    
+   
 
 
   render() {
@@ -88,7 +101,7 @@ export default class ApplicantsScreen extends React.Component {
             <Text style={styles.title}>Closest Applicants</Text>
             {this.state.applicants.map((applicant, index) => (
               <View style={{ flexDirection: 'row' }} key={index}>
-                <UserBox user={applicant} />
+                <UserBox user={applicant} navigation={this.props.navigation}/>
               </View>
             ))}
           </View>

@@ -30,8 +30,8 @@ HomeStack.navigationOptions = {
 };
 
 const ApplicantsStack = createStackNavigator({
-  Home1: ApplicantsScreen,
-  Profile: ProfileScreen
+  Applicants: ApplicantsScreen,
+  
 });
 
 ApplicantsStack.navigationOptions = {
@@ -49,7 +49,7 @@ ApplicantsStack.navigationOptions = {
 };
 
 const EmployersStack = createStackNavigator({
-  Home2: EmployersScreen,
+  Employers: EmployersScreen,
 });
 
 EmployersStack.navigationOptions = {
@@ -67,7 +67,7 @@ EmployersStack.navigationOptions = {
 };
 
 const ProfileStack = createStackNavigator({
-  Home2: ProfileScreen,
+  Profile: ProfileScreen,
 });
 
 ProfileStack.navigationOptions = {
@@ -84,33 +84,6 @@ ProfileStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
 
 const MapStack = createStackNavigator({
   Maps: MapScreen,
