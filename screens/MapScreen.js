@@ -68,9 +68,9 @@ export default class MapScreen extends React.Component {
               } catch (err) {
               console.log('Graphql error adding location to DB', err)
             }
- 
+
         };
-        
+
      // This component runs once after the component mounts
   componentWillMount() {
         navigator.geolocation.getCurrentPosition(
@@ -84,14 +84,14 @@ export default class MapScreen extends React.Component {
             (error) => this.setState({error: error.message}),
             {enableHighAccuracy: false, timeout: 200000, maximumAge: 1000},
         );
-        
+
         // Get user location, then post location to DB
         (async () => {
           await this._getLocation()
           this._addLocation()
           this._showLocations()
         })()
-
+};
 render() {
   const {navigate} = this.props.navigation;
     return (
