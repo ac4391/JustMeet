@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import MapScreen from '../screens/MapScreen';
+import HeatMapScreen from '../screens/HeatMapScreen';
 import ApplicantsScreen from '../screens/ApplicantsScreen';
 import EmployersScreen from '../screens/EmployersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -31,7 +32,7 @@ HomeStack.navigationOptions = {
 
 const ApplicantsStack = createStackNavigator({
   Applicants: ApplicantsScreen,
-  
+
 });
 
 ApplicantsStack.navigationOptions = {
@@ -99,6 +100,20 @@ MapStack.navigationOptions = {
   ),
 };
 
+const HeatMapStack = createStackNavigator({
+  HeatMaps: HeatMapScreen,
+});
+
+HeatMapStack.navigationOptions = {
+  tabBarLabel: 'HeatMap',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-flame' : 'md-flame'}
+    />
+  ),
+};
+
 
 export default createBottomTabNavigator({
   HomeStack,
@@ -106,4 +121,5 @@ export default createBottomTabNavigator({
   EmployersStack,
   MapStack,
   ProfileStack,
+  HeatMapStack,
 });
