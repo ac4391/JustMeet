@@ -43,6 +43,7 @@ export const createLocation = `mutation CreateLocation($input: CreateLocationInp
     email
     lat
     lon
+    timestamp
   }
 }
 `;
@@ -52,6 +53,7 @@ export const updateLocation = `mutation UpdateLocation($input: UpdateLocationInp
     email
     lat
     lon
+    timestamp
   }
 }
 `;
@@ -61,6 +63,7 @@ export const deleteLocation = `mutation DeleteLocation($input: DeleteLocationInp
     email
     lat
     lon
+    timestamp
   }
 }
 `;

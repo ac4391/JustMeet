@@ -38,6 +38,7 @@ export const getLocation = `query GetLocation($id: ID!) {
     email
     lat
     lon
+    timestamp
   }
 }
 `;
@@ -52,6 +53,7 @@ export const listLocations = `query ListLocations(
       email
       lat
       lon
+      timestamp
     }
     nextToken
   }

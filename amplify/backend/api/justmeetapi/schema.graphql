@@ -13,4 +13,5 @@ type Location @model {
   email: String!
   lat: Float!
   lon: Float!
+  timestamp: Int
 }

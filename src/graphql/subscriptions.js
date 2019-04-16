@@ -43,6 +43,7 @@ export const onCreateLocation = `subscription OnCreateLocation {
     email
     lat
     lon
+    timestamp
   }
 }
 `;
@@ -52,6 +53,7 @@ export const onUpdateLocation = `subscription OnUpdateLocation {
     email
     lat
     lon
+    timestamp
   }
 }
 `;
@@ -61,6 +63,7 @@ export const onDeleteLocation = `subscription OnDeleteLocation {
     email
     lat
     lon
+    timestamp
   }
 }
 `;

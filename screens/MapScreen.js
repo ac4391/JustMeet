@@ -12,44 +12,36 @@ export default class MapScreen extends React.Component {
           super(props);
 
           this.state = {
-              latitude: 40.8,
-              longitude: -75.96,
+              user: {},
+              latitude: 40.806457,
+              longitude: -73.963203,
               error: null,
               candidates: [],
               locations: [],
               contents: null
           };
       }
-  _addLocation = async () => {
-        console.log(this.state.latitude, this.state.longitude);
-        console.log(Auth.user); // Print user email
-        console.log('Trying to add location to DB');
+
+  _getLocation = async () => {
+        //console.log(this.state.latitude, this.state.longitude);
+        //console.log(Auth.user); // Print user email
+        console.log('Adding location to DB');
         try {
             const users = await API.graphql(graphqlOperation(listApplicants));
-            var existingUser = {};
+            //var existingUser = {};
             for (i = 0; i < users.data.listApplicants.items.length; i++){
               if (users.data.listApplicants.items[i].email == Auth.user.attributes.email)
-                    {existingUser = users.data.listApplicants.items[i].id,
-                    console.log(existingUser)};
+                    {var existingUser = users.data.listApplicants.items[i]};
             }
+            this.setState({
+                user: existingUser
+            })
           } catch (err) {
-            console.log('error getting applicant', err)
+            console.log('Error getting corresponding applicant for current location', err)
           }
-        const loc = {input:{
-                    lat: this.state.latitude,
-                    lon: this.state.longitude,
-                    email: Auth.user.attributes.email,
-                    }
-                }
-
-        try {
-        await API.graphql(graphqlOperation(createLocation, loc))
-        } catch (err) {
-        console.log('error adding location to DB', err)
-        }
         };
 
-        _showLocations = async () => {
+  _showLocations = async () => {
               console.log('Getting locations from DB');
               try {
                   const graphqldata = await API.graphql(graphqlOperation(listLocations));
@@ -63,9 +55,24 @@ export default class MapScreen extends React.Component {
                 }
               };
 
-
+  _addLocation = async () => {
+            const loc = {input:{
+                    email: this.state.user.email,
+                    lat: this.state.latitude,
+                    lon: this.state.longitude,
+                    timestamp: Math.floor(Date.now()/1000),
+                    }
+                  }
+            try {
+              await API.graphql(graphqlOperation(createLocation, loc))
+              } catch (err) {
+              console.log('Graphql error adding location to DB', err)
+            }
+ 
+        };
+        
      // This component runs once after the component mounts
-  componentDidMount() {
+  componentWillMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -77,11 +84,13 @@ export default class MapScreen extends React.Component {
             (error) => this.setState({error: error.message}),
             {enableHighAccuracy: false, timeout: 200000, maximumAge: 1000},
         );
-        //API call to get friends
-        this._addLocation();
-        this._showLocations();
-
-        }
+        
+        // Get user location, then post location to DB
+        (async () => {
+          await this._getLocation()
+          this._addLocation()
+          this._showLocations()
+        })()
 
 render() {
   const {navigate} = this.props.navigation;

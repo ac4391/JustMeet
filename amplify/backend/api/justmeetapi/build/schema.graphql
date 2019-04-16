@@ -13,6 +13,7 @@ type Location {
   email: String!
   lat: Float!
   lon: Float!
+  timestamp: Int
 }
 
 enum ModelSortDirection {
@@ -152,6 +153,7 @@ input ModelLocationFilterInput {
   email: ModelStringFilterInput
   lat: ModelFloatFilterInput
   lon: ModelFloatFilterInput
+  timestamp: ModelIntFilterInput
   and: [ModelLocationFilterInput]
   or: [ModelLocationFilterInput]
   not: ModelLocationFilterInput
@@ -162,6 +164,7 @@ input CreateLocationInput {
   email: String!
   lat: Float!
   lon: Float!
+  timestamp: Int
 }
 
 input UpdateLocationInput {
@@ -169,6 +172,7 @@ input UpdateLocationInput {
   email: String
   lat: Float
   lon: Float
+  timestamp: Int
 }
 
 input DeleteLocationInput {
