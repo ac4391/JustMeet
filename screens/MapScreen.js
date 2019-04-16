@@ -1,7 +1,6 @@
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps'
 import React from 'react';
-import {View} from 'react-native';
-import {Image} from 'react-native';
+import { Text } from 'react-native';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createLocation } from '../src/graphql/mutations';
 import { listApplicants } from '../src/graphql/queries';
@@ -112,9 +111,11 @@ render() {
         <MapView.Marker key={index}
                           coordinate={{"latitude": location.lat, "longitude": location.lon}}
                          title={location.email}
-                         image={require('../src/restiny.png')}
-                         onPress={() => navigate('Applicants', {email: location.email})}
-                       />
+                         image={require('../src/restiny.png')} >
+                       <MapView.Callout onPress={() => navigate('Profile', {user: this.user})}><Text>{location.email}</Text> 
+                       </MapView.Callout> 
+                       
+                       </MapView.Marker>
 
       ))
       }
