@@ -91,7 +91,7 @@ export default class MapScreen extends React.Component {
           this._addLocation()
           this._showLocations()
         })()
-};
+      };
 render() {
   const {navigate} = this.props.navigation;
     return (
