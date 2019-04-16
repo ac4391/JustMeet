@@ -3,6 +3,7 @@ import { FlatList, ActivityIndicator, Text, View, StyleSheet, Linking, ScrollVie
 import { Icon } from 'expo';
 import Amplify, { Auth, API, graphqlOperation } from 'aws-amplify';
 import { listApplicants } from '../src/graphql/queries';
+import { ListItem } from 'react-native-elements'
 
 
 export default class ApplicantsScreen extends React.Component {
@@ -53,7 +54,7 @@ export default class ApplicantsScreen extends React.Component {
           {
             this.state.applicants.map((applicant, index) => (
               <View style={{flexDirection: 'row'}} key={index}>
-                <Icon.Ionicons onPress={ ()=> Linking.openURL('https://www.linkedin.com/in/ariel-cohen-codar-301020141/') } name={'logo-linkedin'} size={20} color={'#4875B4'}/><Text>{applicant.username}</Text>
+                <Icon.Ionicons onPress={ ()=> Linking.openURL('https://www.linkedin.com/in/ariel-cohen-codar-301020141/') } name={'logo-linkedin'} size={20}  paddingLeft={10} color={'#4875B4'}/><Text> {applicant.username}</Text>
               </View>
             ))
           }
