@@ -4,10 +4,10 @@ import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
 import { withAuthenticator } from 'aws-amplify-react-native';
-import { createApplicant } from './src/graphql/mutations';
 import Amplify, { Auth, API, graphqlOperation } from 'aws-amplify';
 import awsmobile from './aws-exports';
 
+import { createApplicant } from './src/graphql/mutations';
 import { getApplicant, listApplicants } from './src/graphql/queries';
 
 Amplify.configure(awsmobile);
@@ -59,10 +59,11 @@ class App extends React.Component {
                           username: Auth.user.username,
                         }}
         try {
-          const query = await API.graphql(graphqlOperation(listApplicants))
+          // Why is this query here?
+          //const query = await API.graphql(graphqlOperation(listApplicants))
 
-          console.log(query);
-          await API.graphql(graphqlOperation(createApplicant, {input: applicant}))
+          //console.log(query);
+          await API.graphql(graphqlOperation(createApplicant, applicant))
           console.log('applicant created')
         } catch (err) {
           console.log('error creating applicant', err)

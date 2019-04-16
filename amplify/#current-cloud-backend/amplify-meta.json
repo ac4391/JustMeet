@@ -29,7 +29,7 @@
 				"IdentityPoolName": "cognito3e60dbd4_identitypool_3e60dbd4__dev",
 				"UserPoolName": "cognito3e60dbd4_userpool_3e60dbd4"
 			},
-			"lastPushTimeStamp": "2019-04-14T21:42:44.947Z",
+			"lastPushTimeStamp": "2019-04-16T03:07:53.721Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/auth/cognito3e60dbd4-cloudformation-template.yml",
 				"logicalId": "authcognito3e60dbd4"
@@ -49,8 +49,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apijustmeetapi"
 			},
-			"lastPushTimeStamp": "2019-04-14T21:42:45.780Z",
-			"lastPushDirHash": "yeY/dugjwEQsEWIIMlcgnE6E4cU="
+			"lastPushTimeStamp": "2019-04-16T03:07:55.094Z",
+			"lastPushDirHash": "zUJD6S5P6/4odOV7qhIc/w9MOK8="
 		}
 	}
 }
