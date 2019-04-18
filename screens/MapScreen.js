@@ -112,9 +112,9 @@ render() {
                           coordinate={{"latitude": location.lat, "longitude": location.lon}}
                          title={location.email}
                          image={require('../src/restiny.png')} >
-                       <MapView.Callout onPress={() => navigate('Profile', {user: this.user})}><Text>{location.email}</Text> 
-                       </MapView.Callout> 
-                       
+                       <MapView.Callout onPress={() => navigate('Profile', {email: location.email})}><Text>{location.email}</Text> 
+                       </MapView.Callout>
+
                        </MapView.Marker>
 
       ))
