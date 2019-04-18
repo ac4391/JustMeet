@@ -73,7 +73,7 @@ render() {
       this.state.locations.map((location, index) => (
         <MapView.Marker key={index}
                           coordinate={{"latitude": location.lat, "longitude": location.lon}}
-                         title={location.email}
+                         
                          image={require('../src/heat.png')} >
 
 
