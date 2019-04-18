@@ -45,7 +45,7 @@ export default class ProfileScreen extends React.Component {
       <ScrollView style={styles.container}>
         <View style={styles.profile}>
           <View style={styles.description}>
-            <Text style={styles.name}> name: {this.state.user.firstName, this.state.user.firstName}</Text>
+            <Text style={styles.name}> name: {this.state.user.firstName} {this.state.user.lastName}</Text>
             <Text style={styles.name}> field: {this.state.user.professionalField}</Text>
             <Text style={styles.name}> email: {this.state.user.email}</Text>
             <Text style={styles.name}> <Icon.Ionicons onPress={ ()=> Linking.openURL(this.state.user.linkedin) } name={'logo-linkedin'} size={20} color={'#4875B4'}/> {this.state.user.linkedin}</Text>
