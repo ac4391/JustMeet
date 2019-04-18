@@ -8,7 +8,7 @@ export default class UserBox extends React.Component {
     ? <Image source={this.props.user.img} style={styles.userImg}/>
     : <Icon.Ionicons name="ios-contact" size={40} style={styles.userIcon}/>;
     return (
-      <TouchableHighlight onPress={() => this.props.navigation.navigate('Profile')}>
+      <TouchableHighlight onPress={() => this.props.navigation.navigate('Profile', {email:this.props.user.email})}>
         <View style={styles.user}>
           {image}
           <Text style={styles.userName}>{this.props.user.username} {this.props.user.email}</Text>
