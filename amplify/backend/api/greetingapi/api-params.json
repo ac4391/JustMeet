@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/greeting",
+            "lambdaFunction": "greetinglambda",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "greetingapi",
+    "apiName": "greetingapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "greetinglambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "justmeetapp-20190406163309-authRole",
+        "unAuthRoleName": "justmeetapp-20190406163309-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "greetinglambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

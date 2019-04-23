@@ -29,7 +29,7 @@
 				"IdentityPoolName": "cognito3e60dbd4_identitypool_3e60dbd4__dev",
 				"UserPoolName": "cognito3e60dbd4_userpool_3e60dbd4"
 			},
-			"lastPushTimeStamp": "2019-04-16T03:07:53.721Z",
+			"lastPushTimeStamp": "2019-04-23T15:31:55.684Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/auth/cognito3e60dbd4-cloudformation-template.yml",
 				"logicalId": "authcognito3e60dbd4"
@@ -49,8 +49,54 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apijustmeetapi"
 			},
-			"lastPushTimeStamp": "2019-04-16T03:07:55.094Z",
+			"lastPushTimeStamp": "2019-04-23T15:31:55.686Z",
 			"lastPushDirHash": "zUJD6S5P6/4odOV7qhIc/w9MOK8="
+		},
+		"greetingapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "greetinglambda",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/greetingapi-cloudformation-template.json",
+				"logicalId": "apigreetingapi"
+			},
+			"lastPushTimeStamp": "2019-04-23T15:31:55.694Z",
+			"output": {
+				"ApiName": "greetingapi",
+				"RootUrl": "https://mo9awhsxd6.execute-api.us-west-2.amazonaws.com/dev"
+			},
+			"lastPushDirHash": "88ArVT4Lksbv6TH5QL4juVbyvO8="
+		}
+	},
+	"function": {
+		"greetinglambda": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [],
+			"lastBuildTimeStamp": "2019-04-23T15:29:43.851Z",
+			"lastPackageTimeStamp": "2019-04-23T15:29:44.907Z",
+			"distZipFilename": "greetinglambda-1556033383-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/function/greetinglambda-cloudformation-template.json",
+				"logicalId": "functiongreetinglambda"
+			},
+			"lastPushTimeStamp": "2019-04-23T15:31:55.694Z",
+			"output": {
+				"Region": "us-west-2",
+				"Arn": "arn:aws:lambda:us-west-2:726866085064:function:greetinglambda-dev",
+				"Name": "greetinglambda-dev"
+			},
+			"lastPushDirHash": "wdvmHFFRb8X+rdVg4WE1NfJmjOI="
 		}
 	}
 }

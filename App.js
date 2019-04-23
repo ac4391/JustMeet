@@ -36,7 +36,7 @@ class App extends React.Component {
       );
     }
   }
-
+  
   _loadResourcesAsync = async () => {
         //console.log(Auth.user); // Print user email
         try {
@@ -59,16 +59,13 @@ class App extends React.Component {
                           username: Auth.user.username,
                         }}
         try {
-          // Why is this query here?
-          //const query = await API.graphql(graphqlOperation(listApplicants))
-
           //console.log(query);
           await API.graphql(graphqlOperation(createApplicant, applicant))
           console.log('applicant created')
         } catch (err) {
           console.log('error creating applicant', err)
         }
-      }
+        }
 
     return Promise.all([
       Asset.loadAsync([

@@ -161,6 +161,42 @@
 					"env": "dev"
 				}
 			}
+		},
+		"apigreetingapi": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/greetingapi-cloudformation-template.json",
+				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"functiongreetinglambdaName": {
+						"Fn::GetAtt": [
+							"functiongreetinglambda",
+							"Outputs.Name"
+						]
+					},
+					"functiongreetinglambdaArn": {
+						"Fn::GetAtt": [
+							"functiongreetinglambda",
+							"Outputs.Arn"
+						]
+					},
+					"env": "dev"
+				}
+			}
+		},
+		"functiongreetinglambda": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/function/greetinglambda-cloudformation-template.json",
+				"Parameters": {
+					"env": "dev"
+				}
+			}
 		}
 	},
 	"Outputs": {
