@@ -54,10 +54,13 @@ export default class MapScreen extends React.Component {
                   let realLocations = users
                   let allLocations = graphqldata.data.listLocations.items
                   for (i = 0; i < users.length; i++){
+                          found = false
                       for (j = 0; j < allLocations.length; j++){
                           console.log("users and loc", users[i], allLocations[j])
                           if (users[i].email == allLocations[j].email) {
-                              realLocations[i] = allLocations[j]
+                              if (!found || realLocations[i].timestamp<allLocations[j].timestamp) {
+                                realLocations[i] = allLocations[j]
+                                found = true};
                           };
                       };
 
@@ -133,7 +136,6 @@ render() {
                          image={require('../src/restiny.png')} >
                        <MapView.Callout onPress={() => navigate('Profile', {email: location.email})}><Text>{location.email}</Text>
                        </MapView.Callout>
-
                        </MapView.Marker>
 
       ))
