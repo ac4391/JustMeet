@@ -11,37 +11,39 @@ export default class MapScreen extends React.Component {
           super(props);
 
           this.state = {
-              user: {},
+              users: [],
               latitude: 40.806457,
               longitude: -73.963203,
               error: null,
               candidates: [],
               locations: [],
+              realLocations: [],
               contents: null
           };
       }
 
-  _getLocation = async () => {
+  _getApplicants = async () => {
         //console.log(this.state.latitude, this.state.longitude);
         //console.log(Auth.user); // Print user email
         console.log('Adding location to DB');
         try {
             const users = await API.graphql(graphqlOperation(listApplicants));
             //var existingUser = {};
-            for (i = 0; i < users.data.listApplicants.items.length; i++){
-              if (users.data.listApplicants.items[i].email == Auth.user.attributes.email)
-                    {var existingUser = users.data.listApplicants.items[i]};
-            }
             this.setState({
-                user: existingUser
+                users: users.data.listApplicants.items
             })
+            return users.data.listApplicants.items
           } catch (err) {
-            console.log('Error getting corresponding applicant for current location', err)
+            console.log('Error getting applicants', err)
+            return ""
           }
+
         };
 
   _showLocations = async () => {
               console.log('Getting locations from DB');
+              let users = await this._getApplicants()
+              console.log('users', users);
               try {
                   const graphqldata = await API.graphql(graphqlOperation(listLocations));
                   this.setState(
@@ -49,6 +51,23 @@ export default class MapScreen extends React.Component {
                       locations: graphqldata.data.listLocations.items,
                       // reset the input field to empty after post creation
                     })
+                  let realLocations = users
+                  let allLocations = graphqldata.data.listLocations.items
+                  for (i = 0; i < users.length; i++){
+                      for (j = 0; j < allLocations.length; j++){
+                          console.log("users and loc", users[i], allLocations[j])
+                          if (users[i].email == allLocations[j].email) {
+                              realLocations[i] = allLocations[j]
+                          };
+                      };
+
+                    };
+                  this.setState(
+                    {
+                      realLocations: realLocations,
+                        // reset the input field to empty after post creation
+                    })
+                  console.log('num locs', graphqldata.data.listLocations.items.length)
                 } catch (err) {
                   console.log('error getting locations', err)
                 }
@@ -56,7 +75,7 @@ export default class MapScreen extends React.Component {
 
   _addLocation = async () => {
             const loc = {input:{
-                    email: this.state.user.email,
+                    email: Auth.user.attributes.email,
                     lat: this.state.latitude,
                     lon: this.state.longitude,
                     timestamp: Math.floor(Date.now()/1000),
@@ -86,7 +105,7 @@ export default class MapScreen extends React.Component {
 
         // Get user location, then post location to DB
         (async () => {
-          await this._getLocation()
+          await this._getApplicants()
           this._addLocation()
           this._showLocations()
         })()
@@ -107,12 +126,12 @@ render() {
         followUserLocation={true}
       >
       {
-      this.state.locations.map((location, index) => (
+      this.state.realLocations.map((location, index) => (
         <MapView.Marker key={index}
                           coordinate={{"latitude": location.lat, "longitude": location.lon}}
                          title={location.email}
                          image={require('../src/restiny.png')} >
-                       <MapView.Callout onPress={() => navigate('Profile', {email: location.email})}><Text>{location.email}</Text> 
+                       <MapView.Callout onPress={() => navigate('Profile', {email: location.email})}><Text>{location.email}</Text>
                        </MapView.Callout>
 
                        </MapView.Marker>
