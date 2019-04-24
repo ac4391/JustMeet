@@ -1,14 +1,15 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, View, Text, Linking, Button, TextInput} from 'react-native';
 import { listApplicants } from '../src/graphql/queries';
-import { API, graphqlOperation } from 'aws-amplify';
+import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { Icon } from 'expo';
 
 export default class ProfileScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: {}
+      user: {},
+      message: ''
     }
 
   }
@@ -33,14 +34,15 @@ export default class ProfileScreen extends React.Component {
         };
   
   _sendMessage = async () => {
+          // Send API request to AWS Lambda function -> SMS message to applicant
           let apiName = 'greetingapi';
           let path = '/greeting'; 
-          let message = 'hello from just meet'
-          let req = { // OPTIONAL
-              headers: {}, // OPTIONAL
+          let header = 'New JustMeet message from ' + Auth.user.attributes.email + '\n'
+          let req = {
+              headers: {}, 
               response: false, // OPTIONAL (return the entire Axios response object instead of only response.data)
               queryStringParameters: {  // OPTIONAL
-                  message: message,
+                  message: header + this.state.message,
                   email: this.state.user.email,
                   phone: this.state.user.phone
               }
@@ -48,8 +50,7 @@ export default class ProfileScreen extends React.Component {
           await API.get(apiName, path, req).then(response => {
                 console.log("response")
             }).catch(error => {
-                console.log("error sending api request")
-                console.log("although I don't actually think it's a problem")
+                console.log("error sending api request");
             });
   }
 
@@ -82,12 +83,24 @@ export default class ProfileScreen extends React.Component {
             )}
           </View>
         </View>
-        <Button 
-          onPress={this._sendMessage}
-          title="Contact Applicant!"
-          color="#841584"
-        />
 
+        {/* Only render contact option if applicant has phone number in database */}
+        {this.state.user.phone &&
+          <View>
+            <Text>Send a message: </Text>
+            <TextInput
+              style={{height: 40}}
+              placeholder={ 'Type your message here' }
+              onChangeText={(text) => this.setState({message: text})}
+            />
+            <Button 
+              onPress={this._sendMessage}
+              title="Contact Applicant!"
+              color="#841584"
+            />
+          </View>
+          }
+        
       </ScrollView>
     );
   }
