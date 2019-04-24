@@ -43,7 +43,6 @@ export default class MapScreen extends React.Component {
   _showLocations = async () => {
               console.log('Getting locations from DB');
               let users = await this._getApplicants()
-              console.log('users', users);
               try {
                   const graphqldata = await API.graphql(graphqlOperation(listLocations));
                   this.setState(
@@ -55,7 +54,6 @@ export default class MapScreen extends React.Component {
                   let allLocations = graphqldata.data.listLocations.items
                   for (i = 0; i < users.length; i++){
                       for (j = 0; j < allLocations.length; j++){
-                          console.log("users and loc", users[i], allLocations[j])
                           if (users[i].email == allLocations[j].email) {
                               realLocations[i] = allLocations[j]
                           };
