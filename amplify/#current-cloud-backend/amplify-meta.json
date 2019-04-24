@@ -29,7 +29,7 @@
 				"IdentityPoolName": "cognito3e60dbd4_identitypool_3e60dbd4__dev",
 				"UserPoolName": "cognito3e60dbd4_userpool_3e60dbd4"
 			},
-			"lastPushTimeStamp": "2019-04-23T15:31:55.684Z",
+			"lastPushTimeStamp": "2019-04-24T01:32:46.840Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/auth/cognito3e60dbd4-cloudformation-template.yml",
 				"logicalId": "authcognito3e60dbd4"
@@ -49,8 +49,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apijustmeetapi"
 			},
-			"lastPushTimeStamp": "2019-04-23T15:31:55.686Z",
-			"lastPushDirHash": "zUJD6S5P6/4odOV7qhIc/w9MOK8="
+			"lastPushTimeStamp": "2019-04-24T01:32:48.079Z",
+			"lastPushDirHash": "7S1cLGX0n5Pfelv+lciTBYxdcWI="
 		},
 		"greetingapi": {
 			"service": "API Gateway",
@@ -69,7 +69,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/api/greetingapi-cloudformation-template.json",
 				"logicalId": "apigreetingapi"
 			},
-			"lastPushTimeStamp": "2019-04-23T15:31:55.694Z",
+			"lastPushTimeStamp": "2019-04-24T01:32:46.844Z",
 			"output": {
 				"ApiName": "greetingapi",
 				"RootUrl": "https://mo9awhsxd6.execute-api.us-west-2.amazonaws.com/dev"
@@ -90,7 +90,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/justmeetapp-20190406163309-deployment/amplify-cfn-templates/function/greetinglambda-cloudformation-template.json",
 				"logicalId": "functiongreetinglambda"
 			},
-			"lastPushTimeStamp": "2019-04-23T15:31:55.694Z",
+			"lastPushTimeStamp": "2019-04-24T01:32:46.848Z",
 			"output": {
 				"Region": "us-west-2",
 				"Arn": "arn:aws:lambda:us-west-2:726866085064:function:greetinglambda-dev",

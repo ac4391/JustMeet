@@ -215,6 +215,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "phone",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "professionalField",
           "description" : null,
           "args" : [ ],
@@ -337,6 +348,15 @@
           "defaultValue" : null
         }, {
           "name" : "lastName",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "phone",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1229,6 +1249,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "phone",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "professionalField",
           "description" : null,
           "type" : {
@@ -1297,6 +1326,15 @@
           "defaultValue" : null
         }, {
           "name" : "lastName",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "phone",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",

@@ -8,6 +8,7 @@ export const onCreateApplicant = `subscription OnCreateApplicant {
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }
@@ -20,6 +21,7 @@ export const onUpdateApplicant = `subscription OnUpdateApplicant {
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }
@@ -32,6 +34,7 @@ export const onDeleteApplicant = `subscription OnDeleteApplicant {
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }
