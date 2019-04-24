@@ -8,6 +8,7 @@ export const createApplicant = `mutation CreateApplicant($input: CreateApplicant
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }
@@ -20,6 +21,7 @@ export const updateApplicant = `mutation UpdateApplicant($input: UpdateApplicant
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }
@@ -32,6 +34,7 @@ export const deleteApplicant = `mutation DeleteApplicant($input: DeleteApplicant
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }

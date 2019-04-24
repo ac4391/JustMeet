@@ -4,6 +4,7 @@ type Applicant {
   username: String!
   firstName: String
   lastName: String
+  phone: String
   professionalField: String
   linkedin: String
 }
@@ -87,6 +88,7 @@ input ModelApplicantFilterInput {
   username: ModelStringFilterInput
   firstName: ModelStringFilterInput
   lastName: ModelStringFilterInput
+  phone: ModelStringFilterInput
   professionalField: ModelStringFilterInput
   linkedin: ModelStringFilterInput
   and: [ModelApplicantFilterInput]
@@ -107,6 +109,7 @@ input CreateApplicantInput {
   username: String!
   firstName: String
   lastName: String
+  phone: String
   professionalField: String
   linkedin: String
 }
@@ -117,6 +120,7 @@ input UpdateApplicantInput {
   username: String
   firstName: String
   lastName: String
+  phone: String
   professionalField: String
   linkedin: String
 }

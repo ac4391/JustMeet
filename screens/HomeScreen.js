@@ -37,6 +37,7 @@ export default class HomeScreen extends React.Component {
                 firstName: existingUser.firstName,
                 lastName: existingUser.lastName,
                 email: existingUser.email,
+                phone: existingUser.phone,
                 linkedin: existingUser.linkedin,
                 professionalField: existingUser.professionalField
             }, callback= () => console.log(this.state))
@@ -52,6 +53,7 @@ export default class HomeScreen extends React.Component {
       username: this.state.user.username,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
+      phone: this.state.phone,
       linkedin: this.state.linkedin,
       professionalField: this.state.professionalField,
     }
@@ -81,28 +83,35 @@ export default class HomeScreen extends React.Component {
         <Text>First Name: </Text>
         <TextInput
           style={{height: 40}}
-          placeholder={ 'First Name' }
+          placeholder={ this.state.user.firstName ? this.state.user.firstName : 'First Name'}
           onChangeText={(text) => this.setState({firstName: text})}
         />
 
         <Text>Last Name: </Text>
         <TextInput
           style={{height: 40}}
-          placeholder={ 'Last Name' }
+          placeholder={ this.state.user.lastName ? this.state.user.lastName : 'Last Name'}
           onChangeText={(text) => this.setState({lastName: text})}
+        />
+
+        <Text>Phone Number: </Text>
+        <TextInput
+          style={{height: 40}}
+          placeholder={ this.state.user.phone ? this.state.user.phone : 'no spaces or special characters' }
+          onChangeText={(text) => this.setState({phone: '1'+text})}
         />
 
         <Text>linkedin </Text>
         <TextInput
           style={{height: 40}}
-          placeholder={ 'Linkedin'}
+          placeholder={ this.state.user.linkedin ? this.state.user.linkedin : 'LinkedIn'}
           onChangeText={(text) => this.setState({linkedin: text})}
         />
 
         <Text>Professional Field (eg. Software Development): </Text>
         <TextInput
           style={{height: 40}}
-          placeholder={ 'Professional Field'}
+          placeholder={ this.state.user.professionalField ? this.state.user.professionalField : 'Professional Field'}
           onChangeText={(text) => this.setState({professionalField: text})}
         />
 

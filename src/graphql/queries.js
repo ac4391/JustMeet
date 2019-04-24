@@ -8,6 +8,7 @@ export const getApplicant = `query GetApplicant($id: ID!) {
     username
     firstName
     lastName
+    phone
     professionalField
     linkedin
   }
@@ -25,6 +26,7 @@ export const listApplicants = `query ListApplicants(
       username
       firstName
       lastName
+      phone
       professionalField
       linkedin
     }

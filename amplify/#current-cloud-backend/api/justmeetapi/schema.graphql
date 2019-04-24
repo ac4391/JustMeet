@@ -4,6 +4,7 @@ type Applicant @model {
   username: String!
   firstName: String
   lastName: String
+  phone: String
   professionalField: String
   linkedin: String
 }

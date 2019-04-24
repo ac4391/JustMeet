@@ -157,7 +157,7 @@
 						]
 					},
 					"S3DeploymentBucket": "justmeetapp-20190406163309-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/a08689fc71a9b7ce22f2a9a3e4f8e3844a40e47f",
+					"S3DeploymentRootKey": "amplify-appsync-files/641e5c14b453a4889315fefd2eea1c5164be9ea1",
 					"env": "dev"
 				}
 			}
