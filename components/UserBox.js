@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   userImg: {
     width: 40,
     height: 40,
-    borderRadius: 100
+    borderRadius: 20
   },
   distance: {
     marginLeft: 'auto',

@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, View, Text, Linking, Button, TextInput} 
 import { listApplicants } from '../src/graphql/queries';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { Icon } from 'expo';
+import { AutoScaling } from 'aws-sdk/clients/all';
 
 export default class ProfileScreen extends React.Component {
   constructor (props) {
@@ -67,10 +68,11 @@ export default class ProfileScreen extends React.Component {
       <ScrollView style={styles.container}>
         <View style={styles.profile}>
           <View style={styles.description}>
-            <Text style={styles.name}> name: {this.state.user.firstName} {this.state.user.lastName}</Text>
-            <Text style={styles.name}> field: {this.state.user.professionalField}</Text>
-            <Text style={styles.name}> email: {this.state.user.email}</Text>
-            <Text style={styles.name}> <Icon.Ionicons onPress={ ()=> Linking.openURL(this.state.user.linkedin) } name={'logo-linkedin'} size={20} color={'#4875B4'}/> {this.state.user.linkedin}</Text>
+          <Icon.Ionicons name="ios-contact" size={120} style={styles.userIcon}/>
+            <Text style={styles.field}> name: {this.state.user.firstName} {this.state.user.lastName}</Text>
+            <Text style={styles.field}> field: {this.state.user.professionalField}</Text>
+            <Text style={styles.field}> email: {this.state.user.email}</Text>
+            <Text style={styles.field}> <Icon.Ionicons onPress={ ()=> Linking.openURL(this.state.user.linkedin) } name={'logo-linkedin'} size={20} color={'#4875B4'}/> {this.state.user.linkedin}</Text>
             {this.state.type === 0 && this.state.skills.map((s, i) => (
               <View style={styles.skill} key={i}></View>
             ))}
@@ -112,13 +114,20 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: '#fff',
   },
+  userIcon: {
+textAlign: 'center'  },
   profile: {},
-  description: {},
+  description: {
+    width: '80%',
+    marginTop: 100,
+    marginLeft: '10%'
+  },
   icon: {
     width: 35,
     height: 35
   },
-  name: {
+  field: {
+marginTop: 15,
     fontSize: 25
   },
   skill: {},
