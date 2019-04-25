@@ -116,7 +116,6 @@ HeatMapStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   ApplicantsStack,
-  EmployersStack,
   MapStack,
   ProfileStack,
   HeatMapStack,
