@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Platform, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Image, Button, Platform, ScrollView, StyleSheet, Text, View, TextInput, Picker } from 'react-native';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { listApplicants } from '../src/graphql/queries';
 import { updateApplicant } from '../src/graphql/mutations';
@@ -79,7 +79,13 @@ export default class HomeScreen extends React.Component {
           </View>
         </ScrollView> */}
 
-        <View style={{padding: 10}}>
+        <View style={{padding: 0}}>
+
+                <Button
+                  onPress={this._updateApplicant}
+                  title="Update Profile"
+                  color="#841584"
+                />
         <Text>First Name: </Text>
         <TextInput
           style={{height: 40}}
@@ -105,30 +111,23 @@ export default class HomeScreen extends React.Component {
         <TextInput
           style={{height: 40}}
           placeholder={ this.state.user.linkedin ? this.state.user.linkedin : 'LinkedIn'}
-          onChangeText={(text) => this.setState({linkedin: text})}
+          onChangeText={(text) => this.setState({linkedin: 'https://www.linkedin.com/in/'+text})}
         />
 
         <Text>Professional Field (eg. Software Development): </Text>
-        <TextInput
-          style={{height: 40}}
-          placeholder={ this.state.user.professionalField ? this.state.user.professionalField : 'Professional Field'}
-          onChangeText={(text) => this.setState({professionalField: text})}
-        />
-
-        <Button 
-          onPress={this._updateApplicant}
-          title="Update Profile"
-          color="#841584"
-        />
-
-        <Text style={{padding: 10, fontSize: 42}}>
-          {/* {this.state.text.split(' ').map((word) => word && '🍕').join(' ')} */}
-        </Text>
+        <Picker
+        style={{paddingTop: 0 }}
+        selectedValue={this.state.professionalField ? this.state.professionalField: 1}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({professionalField: itemValue})
+        }>
+        <Picker.Item label="Software Developer" value="Software Developer" />
+        <Picker.Item label="Hardware" value="Hardware" />
+        <Picker.Item label="Professor" value="Professor" />
+        <Picker.Item label="Business" value="Business" />
+        </Picker>
         </View>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>Search according to your needs :</Text>
-        </View>
       </View>
     );
   }

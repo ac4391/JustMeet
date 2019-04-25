@@ -1,4 +1,6 @@
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps'
+import {Marker} from 'react-native-maps'
+import {Polygon} from 'react-native-maps'
 import React from 'react';
 import { Text } from 'react-native';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
@@ -24,7 +26,7 @@ export default class MapScreen extends React.Component {
   _showLocations = async () => {
               console.log('Getting locations from DB');
               try {
-                  const graphqldata = await API.graphql(graphqlOperation(listLocations));
+                  const graphqldata = await API.graphql(graphqlOperation(listLocations, {limit:25}));
                   this.setState(
                     {
                       locations: graphqldata.data.listLocations.items,
@@ -71,16 +73,17 @@ render() {
       >
       {
       this.state.locations.map((location, index) => (
-        <MapView.Marker key={index}
-                          coordinate={{"latitude": location.lat, "longitude": location.lon}}
-                         
-                         image={require('../src/heat.png')} >
-
-
-                       </MapView.Marker>
-
-      ))
+        <Marker coordinate={{"latitude": location.lat, "longitude": location.lon}} key={index} cluster={true}/>
+))
       }
+
+      <Polygon
+		coordinates={this.state.locations.map((location, index) => (
+      {"latitude": location.lat, "longitude": location.lon}
+))}
+		strokeColor="#B24112" // fallback for when `strokeColors` is not supported by the map-provider
+		strokeWidth={2}
+	/>
       </MapView>
     );
   }

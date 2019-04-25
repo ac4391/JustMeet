@@ -44,12 +44,13 @@ export default class MapScreen extends React.Component {
               console.log('Getting locations from DB');
               let users = await this._getApplicants()
               try {
-                  const graphqldata = await API.graphql(graphqlOperation(listLocations));
+                  const graphqldata = await API.graphql(graphqlOperation(listLocations, {limit:100}));
                   this.setState(
                     {
                       locations: graphqldata.data.listLocations.items,
                       // reset the input field to empty after post creation
                     })
+                  console.log("all locs", graphqldata.data.listLocations.items)
                   let realLocations = users
                   let allLocations = graphqldata.data.listLocations.items
                   for (i = 0; i < users.length; i++){
@@ -68,7 +69,7 @@ export default class MapScreen extends React.Component {
                       realLocations: realLocations,
                         // reset the input field to empty after post creation
                     })
-                  console.log('num locs', graphqldata.data.listLocations.items.length)
+                  console.log(realLocations)
                 } catch (err) {
                   console.log('error getting locations', err)
                 }

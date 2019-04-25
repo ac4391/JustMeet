@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, View, Text, Linking, Button, TextInput} from 'react-native';
+import { Image, ScrollView, StyleSheet, View, Text, Linking, Button, TextInput, Alert, KeyboardAvoidingView} from 'react-native';
 import { listApplicants } from '../src/graphql/queries';
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { Icon } from 'expo';
@@ -33,14 +33,14 @@ export default class ProfileScreen extends React.Component {
             console.log('Error getting applicant', err)
           }
         };
-  
+
   _sendMessage = async () => {
           // Send API request to AWS Lambda function -> SMS message to applicant
           let apiName = 'greetingapi';
-          let path = '/greeting'; 
+          let path = '/greeting';
           let header = 'New JustMeet message from ' + Auth.user.attributes.email + '\n'
           let req = {
-              headers: {}, 
+              headers: {},
               response: false, // OPTIONAL (return the entire Axios response object instead of only response.data)
               queryStringParameters: {  // OPTIONAL
                   message: header + this.state.message,
@@ -65,7 +65,7 @@ export default class ProfileScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <View style={styles.profile}>
           <View style={styles.description}>
           <Icon.Ionicons name="ios-contact" size={120} style={styles.userIcon}/>
@@ -88,22 +88,25 @@ export default class ProfileScreen extends React.Component {
 
         {/* Only render contact option if applicant has phone number in database */}
         {this.state.user.phone &&
-          <View>
+          <KeyboardAvoidingView>
             <Text>Send a message: </Text>
             <TextInput
               style={{height: 40}}
               placeholder={ 'Type your message here' }
               onChangeText={(text) => this.setState({message: text})}
             />
-            <Button 
-              onPress={this._sendMessage}
+            <Button
+              onPress={() => {
+                this._sendMessage();
+                Alert.alert('Message sent!');
+                }}
               title="Contact Applicant!"
               color="#841584"
             />
-          </View>
+          </KeyboardAvoidingView>
           }
-        
-      </ScrollView>
+
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -111,7 +114,7 @@ export default class ProfileScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 0,
     backgroundColor: '#fff',
   },
   userIcon: {
@@ -119,7 +122,7 @@ textAlign: 'center'  },
   profile: {},
   description: {
     width: '80%',
-    marginTop: 100,
+    marginTop: 10,
     marginLeft: '10%'
   },
   icon: {
