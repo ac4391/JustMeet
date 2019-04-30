@@ -7,6 +7,16 @@ import EmployerBox from '../components/EmployerBox';
 import images from '../assets/images/index'
 
 export default class EmployerScreen extends React.Component {
+  static navigationOptions = {
+    title: 'JustMeet',
+    headerStyle: {
+      backgroundColor: '#006eb6',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 
   constructor(props) {
     super(props);

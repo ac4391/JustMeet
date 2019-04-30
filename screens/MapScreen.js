@@ -5,8 +5,19 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createLocation } from '../src/graphql/mutations';
 import { listApplicants } from '../src/graphql/queries';
 import { listLocations } from '../src/graphql/queries';
-export default class MapScreen extends React.Component {
 
+export default class MapScreen extends React.Component {
+  static navigationOptions = {
+    title: 'JustMeet',
+    headerStyle: {
+      backgroundColor: '#006eb6',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
+  
   constructor(props) {
           super(props);
 

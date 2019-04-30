@@ -9,12 +9,17 @@ import HeatMapScreen from '../screens/HeatMapScreen';
 import ApplicantsScreen from '../screens/ApplicantsScreen';
 import EmployersScreen from '../screens/EmployersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import UpdateProfileScreen from '../screens/UpdateProfileScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
+  title: 'JustMeet',
+  headerStyle: {
+      backgroundColor: '#4286f4',
+  },
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -34,6 +39,10 @@ const ApplicantsStack = createStackNavigator({
 });
 
 ApplicantsStack.navigationOptions = {
+  title: 'JustMeet',
+  headerStyle: {
+      backgroundColor: '#4286f4',
+  },
   tabBarLabel: 'Applicants',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -52,6 +61,10 @@ const EmployersStack = createStackNavigator({
 });
 
 EmployersStack.navigationOptions = {
+  title: 'JustMeet',
+  headerStyle: {
+      backgroundColor: '#4286f4',
+  },
   tabBarLabel: 'Employers',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -67,9 +80,14 @@ EmployersStack.navigationOptions = {
 
 const ProfileStack = createStackNavigator({
   Profile: ProfileScreen,
+  UpdateProfile: UpdateProfileScreen
 });
 
 ProfileStack.navigationOptions = {
+  title: 'JustMeet',
+  headerStyle: {
+      backgroundColor: '#4286f4',
+  },
   tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -89,6 +107,10 @@ const MapStack = createStackNavigator({
 });
 
 MapStack.navigationOptions = {
+  title: 'JustMeet',
+  headerStyle: {
+      backgroundColor: '#4286f4',
+  },
   tabBarLabel: 'Map',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -103,6 +125,10 @@ const HeatMapStack = createStackNavigator({
 });
 
 HeatMapStack.navigationOptions = {
+  title: 'JustMeet',
+  headerStyle: {
+      backgroundColor: '#4286f4',
+  },
   tabBarLabel: 'HeatMap',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
