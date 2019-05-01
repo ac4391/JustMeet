@@ -89,7 +89,7 @@ export default class ProfileScreen extends React.Component {
             <Text style={styles.field}>{this.getParam('firstName')} {this.getParam('lastName')}</Text>
             <Text style={styles.field}>{this.getParam('professionalField')}</Text>
             <Text style={styles.field}>{this.getParam('email')}</Text>
-            <Text style={styles.field}><Icon.Ionicons onPress={() => Linking.openURL(this.state.user.linkedin)} name={'logo-linkedin'} size={50} color={'#4875B4'} /> {this.state.user.linkedin}</Text>
+            <Text style={styles.field}><Icon.Ionicons onPress={() => Linking.openURL(this.state.user.linkedin)} name={'logo-linkedin'} size={50} color={'#4875B4'} /> </Text>
             {this.state.type === 0 && this.state.skills.map((s, i) => (
               <View style={styles.skill} key={i}></View>
             ))}
@@ -124,7 +124,7 @@ export default class ProfileScreen extends React.Component {
         }
         <View style={styles.manageButton}>
           <Button onPress={() => this.props.navigation.navigate('UpdateProfile')}>
-            <Text>Manage Profile</Text>
+            <Text>Manage Your Profile</Text>
           </Button>
         </View>
         </ScrollView>
@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   centered: {
-    flexDirection: "row", 
+    flexDirection: "row",
     justifyContent: "center",
     },
     manageButton: {
-      flexDirection: "row", 
+      flexDirection: "row",
       justifyContent: "center",
       marginBottom: 20
     }

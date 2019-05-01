@@ -17,6 +17,13 @@ class App extends React.Component {
     isLoadingComplete: false,
   };
 
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+    'Roboto': require('native-base/Fonts/Roboto.ttf'),
+    'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+   });
+  }
+
   render() {
 
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -36,7 +43,7 @@ class App extends React.Component {
       );
     }
   }
-  
+
   _loadResourcesAsync = async () => {
         //console.log(Auth.user); // Print user email
         try {

@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginLeft: '15%'
   },
   centered: {
-    flexDirection: "row", 
+    flexDirection: "row",
     justifyContent: "center",
     }
 });

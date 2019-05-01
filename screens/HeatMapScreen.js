@@ -71,6 +71,18 @@ export default class MapScreen extends React.Component {
       };
 render() {
   const {navigate} = this.props.navigation;
+  let poly;
+  if (!!this.state.locations) {
+    poly = <Polygon
+  coordinates={this.state.locations.map((location, index) =>  (
+    {"latitude": location.lat, "longitude": location.lon}
+))}
+  strokeColor="#B24112" // fallback for when `strokeColors` is not supported by the map-provider
+  strokeWidth={2}
+/>
+}else {
+    poly = null
+  }
     return (
       <MapView
         provider = {PROVIDER_GOOGLE}
@@ -83,18 +95,13 @@ render() {
         }}
       >
       {
-      this.state.locations.map((location, index) => (
+      this.state.locations.map((location, index) => { if(!!location.lat)
+        return (
         <Marker coordinate={{"latitude": location.lat, "longitude": location.lon}} key={index} cluster={true}/>
-))
+)})
       }
+      {poly}
 
-      <Polygon
-		coordinates={this.state.locations.map((location, index) => (
-      {"latitude": location.lat, "longitude": location.lon}
-))}
-		strokeColor="#B24112" // fallback for when `strokeColors` is not supported by the map-provider
-		strokeWidth={2}
-	/>
       </MapView>
     );
   }
