@@ -5,7 +5,18 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createLocation } from '../src/graphql/mutations';
 import { listApplicants } from '../src/graphql/queries';
 import { listLocations } from '../src/graphql/queries';
+
 export default class MapScreen extends React.Component {
+  static navigationOptions = {
+    title: 'JustMeet',
+    headerStyle: {
+      backgroundColor: '#006eb6',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 
   constructor(props) {
           super(props);
@@ -50,7 +61,6 @@ export default class MapScreen extends React.Component {
                       locations: graphqldata.data.listLocations.items,
                       // reset the input field to empty after post creation
                     })
-                  console.log("all locs", graphqldata.data.listLocations.items)
                   let realLocations = users
                   let allLocations = graphqldata.data.listLocations.items
                   for (i = 0; i < users.length; i++){
@@ -60,10 +70,15 @@ export default class MapScreen extends React.Component {
                               if (!found || realLocations[i].timestamp<allLocations[j].timestamp) {
                                 realLocations[i] = allLocations[j]
                                 found = true};
+                          if (users[i].email == 'kraken.kk3@gmail.com'){
+                            console.log("found kraken")
+                          };
                           };
                       };
 
                     };
+
+                  console.log("reallocs", realLocations)
                   this.setState(
                     {
                       realLocations: realLocations,
@@ -128,16 +143,18 @@ render() {
         followUserLocation={true}
       >
       {
-      this.state.realLocations.map((location, index) => (
+      this.state.realLocations.map((location, index) => { if(!!location.lat){
+        console.log("found")
+        return (
         <MapView.Marker key={index}
                           coordinate={{"latitude": location.lat, "longitude": location.lon}}
                          title={location.email}
                          image={require('../src/restiny.png')} >
                        <MapView.Callout onPress={() => navigate('Profile', {email: location.email})}><Text>{location.email}</Text>
                        </MapView.Callout>
-                       </MapView.Marker>
+                       </MapView.Marker>);
 
-      ))
+      }})
       }
 
       {this.state.contents}

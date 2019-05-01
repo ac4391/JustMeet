@@ -4,14 +4,11 @@ import { Icon } from 'expo';
 
 export default class UserBox extends React.Component {
   render() {
-    var image = this.props.user.img
-    ? <Image source={this.props.user.img} style={styles.userImg}/>
-    : <Icon.Ionicons name="ios-contact" size={40} style={styles.userIcon}/>;
     return (
       <TouchableHighlight onPress={() => this.props.navigation.navigate('Profile', {email:this.props.user.email})}>
         <View style={styles.user}>
-          {image}
-          <Text style={styles.userName}>{this.props.user.username} {this.props.user.email}</Text>
+          <Image source={require('../assets/images/male.png')} style={styles.userImg}/>
+          <Text style={styles.userName}>{this.props.user.username}</Text>
           <Text style={styles.distance}>{this.props.user.distance}</Text>
         </View>
       </TouchableHighlight>
