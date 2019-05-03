@@ -72,7 +72,7 @@ export default class MapScreen extends React.Component {
 render() {
   const {navigate} = this.props.navigation;
   let poly;
-  if (!!this.state.locations) {
+  if (!!this.state.locations && this.state.locations.length > 0) {
     poly = <Polygon
   coordinates={this.state.locations.map((location, index) =>  (
     {"latitude": location.lat, "longitude": location.lon}
