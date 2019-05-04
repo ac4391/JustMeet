@@ -7,6 +7,7 @@ import { Auth, API, graphqlOperation } from 'aws-amplify';
 import { createLocation } from '../src/graphql/mutations';
 import { listApplicants } from '../src/graphql/queries';
 import { listLocations } from '../src/graphql/queries';
+import hull from 'hull.js'
 
 export default class MapScreen extends React.Component {
   static navigationOptions = {
@@ -73,9 +74,17 @@ render() {
   const {navigate} = this.props.navigation;
   let poly;
   if (!!this.state.locations && this.state.locations.length > 0) {
+
+    let pointset = [];
+    for (j = 0; j < this.state.locations.length; j++){
+      pointset.push([this.state.locations[j].lat,this.state.locations[j].lon])
+    };
+    console.log(pointset.length)
+    let edge = hull(pointset, 10);
+    console.log(edge.length)
     poly = <Polygon
-  coordinates={this.state.locations.map((location, index) =>  (
-    {"latitude": location.lat, "longitude": location.lon}
+  coordinates={edge.map((location, index) =>  (
+    {"latitude": location[0], "longitude": location[1]}
 ))}
   strokeColor="#B24112" // fallback for when `strokeColors` is not supported by the map-provider
   strokeWidth={2}
