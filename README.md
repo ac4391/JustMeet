@@ -2,12 +2,18 @@
 JustMeet is a mobile application that facilitates in-person interactions between employers and job-seekers. We use the built-in smartphone GPS modules to access users' locations and push notifications to them regarding other users, based on interest and proximity. JustMeet provides a user friendly application that runs on IOS and Android, built with React Native. Applicants can view/update their profiles from within the app. Employers can view nearby applicants and request an in-person meeting. An intuitive map interface displays nearby applicants.
 
 ## Demo
-![Map Screen](ims/mapScreen.jpeg)
-![Profile Screen](ims/profileScreen.jpeg)
-![Coverage Map](ims/coverageMap.jpeg)
+Below are screenshots from the JustMeet app demonstrating core functionality.
+<p float="left">
+  <img src="ims/mapScreen.jpeg" width="30%"/>
+  <img src="ims/profileScreen.jpeg" width="30%" /> 
+  <img src="ims/coverageMap.jpeg" width="30%" />
+</p>
+The 1st image shows the map screen where employers can view time-delayed user locations and select specific users to view more information.
+The 2nd image shows the profile screen, which displays important user information such as name, email, professional field, and LinkedIn profile. Here the employer can contact the applicant through a simple text input field, which routes through AWS SNS to the applicant's phone.
+The 3rd image shows the Coverage Map, where employers can visualize the geography of applicants in the area.
 
 # Table of Contents
-[**Demo**](#Demo-/-TLDR)
+[**Demo**](#Demo)
 
 [**Repository Strucure**](#Repository-Structure)
 
