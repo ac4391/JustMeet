@@ -1,11 +1,9 @@
 import React from 'react';
 import { ActivityIndicator, Text, View, ScrollView, StyleSheet } from 'react-native';
 import { API, graphqlOperation } from 'aws-amplify';
-import { Auth } from 'aws-amplify';
 
 import { listApplicants } from '../../JustMeet/src/graphql/queries';
 import UserBox from '../../JustMeet/components/UserBox';
-import images from '../../JustMeet/assets/images/index'
 
 export default class ApplicantsScreen extends React.Component {
   static navigationOptions = {
@@ -32,7 +30,7 @@ export default class ApplicantsScreen extends React.Component {
     this.state.isLoading = false
   }
 
-  //get applicants from database
+  // Get a list of applicants from database
   _listApplicants = async () => {
     try {
       const graphqldata = await API.graphql(
@@ -49,9 +47,6 @@ export default class ApplicantsScreen extends React.Component {
     }
   }
 
-
-
-
   render() {
     if (this.state.isLoading) {
       return (
@@ -64,6 +59,7 @@ export default class ApplicantsScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>
+          {/* Render a user box for each applicant */}
           <View style={styles.container}>
             <Text style={styles.title}>Closest Applicants</Text>
             {this.state.applicants.map((applicant, index) => (
@@ -78,6 +74,7 @@ export default class ApplicantsScreen extends React.Component {
   }
 }
 
+//Styling for Applicants Screen
 const styles = StyleSheet.create({
   container: {
     flex: 1,

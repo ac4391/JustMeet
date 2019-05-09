@@ -17,7 +17,7 @@ class App extends React.Component {
     isLoadingComplete: false,
   };
 
-//load necessary fonts for Android
+//Load necessary fonts for Android
   async componentWillMount() {
     await Expo.Font.loadAsync({
     'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -26,7 +26,6 @@ class App extends React.Component {
   }
 
   render() {
-
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -44,34 +43,35 @@ class App extends React.Component {
       );
     }
   }
-  //add user to databes if doesn't exist
-  _loadResourcesAsync = async () => {
-        try {
-          const users = await API.graphql(graphqlOperation(listApplicants));
-          var existingUser = false;
-          for (i = 0; i < users.data.listApplicants.items.length; i++){
-            if (users.data.listApplicants.items[i].email == Auth.user.attributes.email){existingUser = true}
-          }
-        } catch (err) {
-          console.log('error getting applicant', err)
-        }
-        if (existingUser) {
-          console.log('applicant already exists')
-        }
-        else{
-        console.log('Trying to create applicant');
 
-        const applicant = {input:{
-                          email: Auth.user.attributes.email,
-                          username: Auth.user.username,
-                        }}
-        try {
-          await API.graphql(graphqlOperation(createApplicant, applicant))
-          console.log('applicant created')
-        } catch (err) {
-          console.log('error creating applicant', err)
-        }
-        }
+  //add user to database if doesn't exist
+  _loadResourcesAsync = async () => {
+    try {
+      const users = await API.graphql(graphqlOperation(listApplicants));
+      var existingUser = false;
+      for (i = 0; i < users.data.listApplicants.items.length; i++){
+        if (users.data.listApplicants.items[i].email == Auth.user.attributes.email){existingUser = true}
+      }
+    } catch (err) {
+      console.log('error getting applicant', err)
+    }
+    if (existingUser) {
+      console.log('applicant already exists')
+    }
+    else{
+      console.log('Trying to create applicant');
+
+      const applicant = {input:{
+                        email: Auth.user.attributes.email,
+                        username: Auth.user.username,
+                      }}
+      try {
+        await API.graphql(graphqlOperation(createApplicant, applicant))
+        console.log('applicant created')
+      } catch (err) {
+        console.log('error creating applicant', err)
+      }
+    }
 
     return Promise.all([
       Asset.loadAsync([
@@ -94,7 +94,7 @@ class App extends React.Component {
   };
 }
 
-//authentication
+//Include user authentication
 export default withAuthenticator(App, {includeGreetings: false});
 
 const styles = StyleSheet.create({

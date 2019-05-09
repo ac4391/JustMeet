@@ -19,7 +19,7 @@ export default class UpdateProfile extends React.Component {
 
   constructor(props) {
     super(props);
-    //initialize fields
+    //Initialize state 
     this.state = {
       user: {},
       firstName: null,
@@ -34,29 +34,31 @@ export default class UpdateProfile extends React.Component {
   componentWillMount () {
     this._getUserInfo()
   }
-  //get user information
-  _getUserInfo = async () => {
-        console.log('Getting User Info');
-        try {
-            const users = await API.graphql(graphqlOperation(listApplicants));
-            for (i = 0; i < users.data.listApplicants.items.length; i++){
-              if (users.data.listApplicants.items[i].email == Auth.user.attributes.email)
-                    {var existingUser = users.data.listApplicants.items[i]};
-            }
-            this.setState({
-                user: await existingUser,
-                firstName: existingUser.firstName,
-                lastName: existingUser.lastName,
-                email: existingUser.email,
-                phone: existingUser.phone,
-                linkedin: existingUser.linkedin,
-                professionalField: existingUser.professionalField
-            })
-          } catch (err) {
-            console.log('Error getting corresponding applicant for current location', err)
-          }
-        };
 
+  // Get user information
+  _getUserInfo = async () => {
+    console.log('Getting User Info');
+    try {
+      const users = await API.graphql(graphqlOperation(listApplicants));
+      for (i = 0; i < users.data.listApplicants.items.length; i++){
+        if (users.data.listApplicants.items[i].email == Auth.user.attributes.email)
+              {var existingUser = users.data.listApplicants.items[i]};
+      }
+      this.setState({
+            user: await existingUser,
+            firstName: existingUser.firstName,
+            lastName: existingUser.lastName,
+            email: existingUser.email,
+            phone: existingUser.phone,
+            linkedin: existingUser.linkedin,
+            professionalField: existingUser.professionalField
+      })
+    } catch (err) {
+      console.log('Error getting corresponding applicant for current location', err)
+    }
+  };
+
+  // Update applicant object in database with user-provided inputs
   _updateApplicant = async () => {
     var updatedApplicant = {
       id: this.state.user.id,
@@ -69,10 +71,10 @@ export default class UpdateProfile extends React.Component {
       professionalField: this.state.professionalField,
     }
     try {
-          await API.graphql(graphqlOperation(updateApplicant, {input: updatedApplicant}))
-        } catch (err) {
-          console.log('error updating applicant', err)
-        }
+      await API.graphql(graphqlOperation(updateApplicant, {input: updatedApplicant}))
+    } catch (err) {
+      console.log('error updating applicant', err)
+    }
     this.props.navigation.navigate('Profile', {email: this.state.user.email})
   }
 
@@ -133,6 +135,7 @@ export default class UpdateProfile extends React.Component {
   }
 }
 
+// Styling for Update Screen
 const styles = StyleSheet.create({
   container: {
     flex: 1,

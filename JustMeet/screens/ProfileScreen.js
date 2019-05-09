@@ -26,7 +26,7 @@ export default class ProfileScreen extends React.Component {
     }
   }
 
-  //find corresponding user
+  //Find corresponding user
   _getProfile = async () => {
     console.log('getting applicant from DB');
     try {
@@ -38,6 +38,7 @@ export default class ProfileScreen extends React.Component {
         user: existingUser
       })
     } catch (err) {
+      // Couldn't find user in the database
       console.log('Error getting applicant', err)
     }
   };
@@ -130,6 +131,7 @@ export default class ProfileScreen extends React.Component {
   }
 }
 
+// Styling for Profile Screen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
