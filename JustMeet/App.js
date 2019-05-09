@@ -17,6 +17,7 @@ class App extends React.Component {
     isLoadingComplete: false,
   };
 
+//load necessary fonts for Android
   async componentWillMount() {
     await Expo.Font.loadAsync({
     'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -43,9 +44,8 @@ class App extends React.Component {
       );
     }
   }
-
+  //add user to databes if doesn't exist
   _loadResourcesAsync = async () => {
-        //console.log(Auth.user); // Print user email
         try {
           const users = await API.graphql(graphqlOperation(listApplicants));
           var existingUser = false;
@@ -66,7 +66,6 @@ class App extends React.Component {
                           username: Auth.user.username,
                         }}
         try {
-          //console.log(query);
           await API.graphql(graphqlOperation(createApplicant, applicant))
           console.log('applicant created')
         } catch (err) {
@@ -80,18 +79,13 @@ class App extends React.Component {
         require('./assets/images/robot-prod.png'),
       ]),
       Font.loadAsync({
-        // This is the font that we are using for our tab bar
         ...Icon.Ionicons.font,
-        // We include SpaceMono because we use it in HomeScreen.js. Feel free
-        // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       }),
     ]);
   };
 
   _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 
@@ -100,6 +94,7 @@ class App extends React.Component {
   };
 }
 
+//authentication
 export default withAuthenticator(App, {includeGreetings: false});
 
 const styles = StyleSheet.create({

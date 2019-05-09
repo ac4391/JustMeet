@@ -7,7 +7,6 @@ import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
 import HeatMapScreen from '../screens/HeatMapScreen';
 import ApplicantsScreen from '../screens/ApplicantsScreen';
-import EmployersScreen from '../screens/EmployersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import UpdateProfileScreen from '../screens/UpdateProfileScreen';
 
@@ -51,28 +50,6 @@ ApplicantsStack.navigationOptions = {
         Platform.OS === 'ios'
           ? `ios-person`
           : 'md-information-circle'
-      }
-    />
-  ),
-};
-
-const EmployersStack = createStackNavigator({
-  Employers: EmployersScreen,
-});
-
-EmployersStack.navigationOptions = {
-  title: 'JustMeet',
-  headerStyle: {
-      backgroundColor: '#4286f4',
-  },
-  tabBarLabel: 'Employers',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-        ? `ios-briefcase`
-        : 'md-briefcase'
       }
     />
   ),

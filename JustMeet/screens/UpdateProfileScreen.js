@@ -19,6 +19,7 @@ export default class UpdateProfile extends React.Component {
 
   constructor(props) {
     super(props);
+    //initialize fields
     this.state = {
       user: {},
       firstName: null,
@@ -33,12 +34,11 @@ export default class UpdateProfile extends React.Component {
   componentWillMount () {
     this._getUserInfo()
   }
-
+  //get user information
   _getUserInfo = async () => {
         console.log('Getting User Info');
         try {
             const users = await API.graphql(graphqlOperation(listApplicants));
-            //var existingUser = {};
             for (i = 0; i < users.data.listApplicants.items.length; i++){
               if (users.data.listApplicants.items[i].email == Auth.user.attributes.email)
                     {var existingUser = users.data.listApplicants.items[i]};
@@ -51,7 +51,7 @@ export default class UpdateProfile extends React.Component {
                 phone: existingUser.phone,
                 linkedin: existingUser.linkedin,
                 professionalField: existingUser.professionalField
-            }, callback= () => console.log(this.state))
+            })
           } catch (err) {
             console.log('Error getting corresponding applicant for current location', err)
           }
@@ -70,7 +70,6 @@ export default class UpdateProfile extends React.Component {
     }
     try {
           await API.graphql(graphqlOperation(updateApplicant, {input: updatedApplicant}))
-          console.log('applicant updated')
         } catch (err) {
           console.log('error updating applicant', err)
         }

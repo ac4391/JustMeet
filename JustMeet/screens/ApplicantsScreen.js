@@ -32,6 +32,7 @@ export default class ApplicantsScreen extends React.Component {
     this.state.isLoading = false
   }
 
+  //get applicants from database
   _listApplicants = async () => {
     try {
       const graphqldata = await API.graphql(
@@ -40,7 +41,6 @@ export default class ApplicantsScreen extends React.Component {
       this.setState(
         {
           applicants: graphqldata.data.listApplicants.items,
-          // reset the input field to empty after post creation
         }
       )
     }

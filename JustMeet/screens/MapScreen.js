@@ -20,26 +20,22 @@ export default class MapScreen extends React.Component {
 
   constructor(props) {
           super(props);
-
+          // initialize
           this.state = {
               users: [],
               latitude: 40.806457,
               longitude: -73.963203,
               error: null,
-              candidates: [],
               locations: [],
               realLocations: [],
-              contents: null
           };
       }
 
+      //get all applicants from database
   _getApplicants = async () => {
-        //console.log(this.state.latitude, this.state.longitude);
-        //console.log(Auth.user); // Print user email
         console.log('Adding location to DB');
         try {
             const users = await API.graphql(graphqlOperation(listApplicants));
-            //var existingUser = {};
             this.setState({
                 users: users.data.listApplicants.items
             })
@@ -48,9 +44,9 @@ export default class MapScreen extends React.Component {
             console.log('Error getting applicants', err)
             return ""
           }
-
         };
 
+        //get the most recent location for each applicant
   _showLocations = async () => {
               console.log('Getting locations from DB');
               let users = await this._getApplicants()
@@ -59,7 +55,6 @@ export default class MapScreen extends React.Component {
                   this.setState(
                     {
                       locations: graphqldata.data.listLocations.items,
-                      // reset the input field to empty after post creation
                     })
                   let realLocations = users
                   let allLocations = graphqldata.data.listLocations.items
@@ -70,26 +65,19 @@ export default class MapScreen extends React.Component {
                               if (!found || realLocations[i].timestamp<allLocations[j].timestamp) {
                                 realLocations[i] = allLocations[j]
                                 found = true};
-                          if (users[i].email == 'kraken.kk3@gmail.com'){
-                            console.log("found kraken")
-                          };
                           };
                       };
 
                     };
-
-                  console.log("reallocs", realLocations)
                   this.setState(
                     {
                       realLocations: realLocations,
-                        // reset the input field to empty after post creation
                     })
-                  console.log(realLocations)
                 } catch (err) {
                   console.log('error getting locations', err)
                 }
               };
-
+    //add users current location to database
   _addLocation = async () => {
             const loc = {input:{
                     email: Auth.user.attributes.email,
@@ -120,7 +108,6 @@ export default class MapScreen extends React.Component {
             {enableHighAccuracy: false, timeout: 200000, maximumAge: 1000},
         );
 
-        // Get user location, then post location to DB
         (async () => {
           await this._getApplicants()
           this._addLocation()
@@ -143,8 +130,8 @@ render() {
         followUserLocation={true}
       >
       {
+        //display user locations
       this.state.realLocations.map((location, index) => { if(!!location.lat){
-        console.log("found")
         return (
         <MapView.Marker key={index}
                           coordinate={{"latitude": location.lat, "longitude": location.lon}}
@@ -156,8 +143,6 @@ render() {
 
       }})
       }
-
-      {this.state.contents}
       </MapView>
     );
   }

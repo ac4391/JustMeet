@@ -23,18 +23,16 @@ export default class MapScreen extends React.Component {
 
   constructor(props) {
           super(props);
-
+          //initialize locations
           this.state = {
-              user: {},
               latitude: 40.806457,
               longitude: -73.963203,
               error: null,
-              candidates: [],
-              locations: [],
-              contents: null
+              locations: []
           };
       }
 
+      // pull all locations from the database and store them in locations
   _showLocations = async () => {
               console.log('Getting locations from DB');
               try {
@@ -42,7 +40,6 @@ export default class MapScreen extends React.Component {
                   this.setState(
                     {
                       locations: graphqldata.data.listLocations.items,
-                      // reset the input field to empty after post creation
                     })
                 } catch (err) {
                   console.log('error getting locations', err)
@@ -55,6 +52,7 @@ export default class MapScreen extends React.Component {
   componentWillMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                // set viewing location to current position
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
@@ -65,28 +63,26 @@ export default class MapScreen extends React.Component {
             {enableHighAccuracy: false, timeout: 200000, maximumAge: 1000},
         );
 
-        // Get user location, then post location to DB
-
           this._showLocations()
 
       };
 render() {
   const {navigate} = this.props.navigation;
+    //get polygon points if locations are loaded
   let poly;
   if (!!this.state.locations && this.state.locations.length > 0) {
-
     let pointset = [];
     for (j = 0; j < this.state.locations.length; j++){
       pointset.push([this.state.locations[j].lat,this.state.locations[j].lon])
     };
-    console.log(pointset.length)
+    //get hull points
     let edge = hull(pointset, 10);
-    console.log(edge.length)
+    //display the location polygon
     poly = <Polygon
   coordinates={edge.map((location, index) =>  (
     {"latitude": location[0], "longitude": location[1]}
 ))}
-  strokeColor="#B24112" // fallback for when `strokeColors` is not supported by the map-provider
+  strokeColor="#B24112"
   strokeWidth={2}
 />
 }else {
@@ -104,6 +100,7 @@ render() {
         }}
       >
       {
+        // place markers on map for each location
       this.state.locations.map((location, index) => { if(!!location.lat)
         return (
         <Marker coordinate={{"latitude": location.lat, "longitude": location.lon}} key={index} cluster={true}/>
