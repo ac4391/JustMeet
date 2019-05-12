@@ -52,8 +52,8 @@ Screen showing relevant candidate information including name, email, LinkedIn, a
 Screen for users to update personal information.
 
 ## Navigation/
-### App Navigator
+#### App Navigator
 Initializes main app navigation
 
-### Main Tab Navigator
+#### Main Tab Navigator
 Creates the bottom bar navigation menu with pressable options for each display screen. 
